@@ -157,6 +157,377 @@ When you want the widget to be big as the parent widget allow
 
 ---
 
-19.What is Ticker, Tween and AnimatedBuilder?
+19.What is `Ticker`, `Tween` and `AnimatedBuilder`?
 
 <img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/ticker.png' alt="ticker"/>
+
+Animation Sequences
+To achieve sequence animation we’ll introduce a new Widget that also helps with reducing animation code called AnimatedBuilder which allows you to rebuild your widget through a builder function every time a new animation value is calculated
+
+---
+
+20.What is `ephemeral` state?
+
+<img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/ephemeral.png' alt="ephemeral"/>
+
+---
+
+21.What is an `AspectRatio` widget used for?
+
+
+AspectRatio Widget tries to find the best size to maintain aspect ration while respecting it’s layout constraints. The AspectRatio Widget can be used to adjust the aspect ratio of widgets in your app
+
+---
+
+22.How would you access `StatefulWidget` properties from its State?
+
+Using the widget property
+
+---
+
+23.Mention two or more operations that would require you to use or turn a `Future`
+
+	1. Calling api using http
+	2. Getting result from geolocator package 
+	3. With FutureBuilder widget 
+
+---
+
+24.What is the purpose of a `SafeArea`?
+
+
+SafeArea is basically a glorified Padding widget. If you wrap another widget with SafeArea, it adds any necessary padding needed to keep your widget from being blocked by the system status bar, notches, holes, rounded corners and other "creative" features by manufactures
+
+---
+
+25.When to use a `mainAxisSize`?
+
+
+When you use MainAxisSize on your Column or Row, they will determine the size of the Column or Row along the main axis, i.e, height for Column and width for Row
+
+https://itnext.io/flutter-mainaxissize-max-vs-min-d9095d8f7914
+
+---
+
+26.`SizedBox` VS `Container`?
+
+<img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/sized.png' alt="sized"/>
+
+<img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/sized2.png' alt="sized2"/>
+
+---
+
+
+27.List the `Visibility` widgets in flutter and the differences?
+
+	1. Visibility
+	2. Opacity
+	3. Offstage
+	
+https://medium.com/@danle.sdev/widget-hide-and-seek-a-guide-to-managing-flutter-widgets-visibility-d7977cbaf444
+
+---
+
+28.Can we use `Color` and `Decoration` property simultaneously in the Container?
+
+No
+
+The color property is a shorthand for creating a BoxDecoration with a color field. If you are adding a box decoration, simply place the color on the BoxDecoration.
+
+---
+
+29.Inorder for the `CrossAxisAlignment.baseline` to work what is another property that we need to set?
+
+crossAxisAlignment: CrossAxisAlignment.baseline
+textBaseline: TextBaseline.ideographic,
+
+---
+
+30.when should we use a `resizeToAvoidBottomInset`?
+
+
+If true the body and the scaffold's floating widgets should size themselves to avoid the onscreen keyboard whose height is defined by the ambient MediaQuery's MediaQueryData.viewInsets bottom property.
+
+For example, if there is an onscreen keyboard displayed above the scaffold, the body can be resized to avoid overlapping the keyboard, which prevents widgets inside the body from being obscured by the keyboard
+
+`With resizeToAvoidBottomInset`
+https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/316760/7da984e6-ec32-7989-174c-0e104e4c5557.gif
+
+`without resizeToAvoidBottomInset`
+https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/316760/0c933d45-82a2-4401-836c-d1c6f5abc2db.gif
+
+---
+
+31.What is the difference between `as`,`show` and `hide` in an import statement?
+
+<img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/as.png' alt="as"/>
+
+---
+
+32.What is the importance of a `TextEditingController`?
+
+Whenever the user modifies a text field with an associated TextEditingController, the text field updates value and the controller notifies its listeners. Listeners can then read the text and selection properties to learn what the user has typed or how the selection has been updated
+
+---
+
+33.Why do we use a Reverse property in a `Listview`?
+
+List<String> animals = ['cat', 'dog', 'duck'];
+List<String> reversedAnimals = animals.reversed.toList();
+
+---
+
+34.Difference between a Modal and Persistent BottomSheet with an example?
+
+---
+
+35.How is an `Inherited Widget` different from a `Provider`?
+
+Provider basically takes the logic of InheritedWidgets, but reduce the boilerplate to the strict minimum
+
+---
+
+36.What is an `UnmodifiableListView`?
+
+Cannot change the list items by adding or removing
+
+https://github.com/filiph/state_experiments/issues/5
+
+---
+
+37.Difference between these operators `??` and `?.`
+
+`??` 
+expr1 ?? expr2
+If expr1 is non-null, returns its value; otherwise, evaluates and returns the value of expr2.
+
+
+`?.` Like . but the leftmost operand can be null; example: foo?.bar selects property bar from expression foo unless foo is null (in which case the value of foo?.bar is null)
+
+
+https://dart.dev/guides/language/language-tour
+
+---
+
+38.What is the purpose of `ModalRoute.of()`?
+
+ ModalRoute.of() method. This method returns the current route with the arguments
+
+
+`final args = ModalRoute.of(context).settings.arguments;`
+
+---
+
+39.Difference between a `Navigator.pushNamed` and `Navigator.pushReplacementNamed`?
+
+<img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/pushNamed.png' alt="pushNamed"/>
+
+---
+
+40.Difference between a Single Instance and Scoped Instance ?
+
+https://codewithandrea.com/articles/2019-06-10-global-access-vs-scoped-access/
+
+---
+
+41.Difference between getDocuments() vs snapshots()?
+
+<img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/getDocuments.png' alt="getDocuments"/>
+
+---
+
+42.What is a `vsync`?
+
+Vsync basically keeps the track of screen, so that Flutter does not renders the animation when the screen is not being displayed
+
+---
+
+43.When does the animation reach `completed` or `dismissed` status?
+
+animations that progress from 0.0 to 1.0 will be dismissed when their value is 0.0. An animation might then run forward (from 0.0 to 1.0) or perhaps in reverse (from 1.0 to 0.0). Eventually, if the animation reaches the end of its range (1.0), the animation reaches the completed status.
+
+---
+
+44.Difference between `AnimationController` and `Animation`?
+
+AnimationController is for how long the animation would be and how to control from time, upper and lower boundary, how to control data with time, length, sequence, etc. while AnimationTween is for the range of animation with time, colour, range, sequence, etc as long the animation would be while
+
+---
+
+45.When to use a SingleTickerProviderStateMixin and TickerProviderStateMixin?
+
+---
+
+46.Define a `TweenAnimation` ?
+
+Short for in-betweening. In a tween animation, the beginning and ending points are defined, as well as a timeline, and a curve that defines the timing and speed of the transition. The framework calculates how to transition from the beginning point to the end point
+
+---
+
+47.State the importance of a `Ticker` ?
+
+Ticker is the refresh rate of our animations. This is what we want to pause when our clock is hidden.
+
+A bonus for using Ticker is that this allows the dev-tool to “slow” our animation.
+If we use “Slow animations”, then our clock is slowed by 50%. This is a good sign, as it means it will be a lot easier to test our clock!
+
+---
+
+
+48.Why do we need a `mixins` ?
+
+Mixins are very helpful when we want to share a behavior across multiple classes that don’t share the same class hierarchy, or when it doesn’t make sense to implement such a behavior in a superclass
+
+---
+
+49.When do you use the `WidgetsBindingObserver`?
+
+To check when the system puts the app in the background or returns the app to the foreground
+
+---
+
+50.Why does the `first` flutter app take a very long developing time?
+
+When you are going to build the Flutter app for the first time, it takes a very long time than usual because Flutter builds a device-specific IPA or APK file. In this process, the Xcode and Gradle are used to build a file, which usually takes a long time
+
+---
+
+51.Define what is an `App State`?
+
+
+The App State is also called an application state or shared state. The app state can be distributed across multiple areas of your app and the same is maintained with user sessions.
+
+Following are the examples of App State:
+
+Login info
+User preferences
+The shopping cart of an e-commerce application
+
+---
+
+52.What are the two types of `Streams` available in Flutter?
+
+
+Single subscription streams:
+
+It is a popular and common type of stream.
+It consists of a series of events that are parts of a large whole. Here all events have to be delivered in a defined order without even missing a single event.
+It is a type of stream that you get when you get a web request or receive a file.
+This stream can only be listed once. Listing it, again and again, means missing initial values and overall stream makes no sense at all.
+When the listing starts in this stream the data gets fetched and provided in chunks.
+
+
+Broadcast streams:
+
+This stream is meant for the individual messages that can be handled one at a time. These types of streams are commonly used for mouse events in a browser.
+You can list this type of stream at any time.
+Multiple listeners can listen at a time and also you have a chance to listen after the cancellation of the previous subscription
+
+---
+
+53.What do you know about Dart `Isolates`?
+
+To gain concurrency Dart makes use of the Isolates method which works on its own without sharing memory but uses passing or message communication.
+
+---
+
+54.What is a `Flutter inspector`?
+
+Flutter inspector is a tool that helps in visualizing and exploring the widget trees. It helps in understanding the present layout and diagnoses various layout issues
+
+---
+
+55.`Stream` vs `Future`?
+
+The difference is that Futures are about one-shot request/response (I ask, there is a delay, I get a notification that my Future is ready to collect, and I'm done!) whereas Streams are a continuous series of responses to a single request (I ask, there is a delay, then I keep getting responses until the stream dries up or I decide to close it and walk away) 
+
+---
+
+56.How to compare two dates that are constructed differently in Dart?
+
+<img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/date.png' alt="date"/>
+
+---
+
+57.What's the difference between `async` and `async*` in Dart?
+
+<img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/async.png' alt="async"/>
+
+---
+
+58.`Debug` vs `Profile` mode?
+
+In debug mode, the app is set up for debugging on the physical device, emulator, or simulator.
+
+Debug 
+
+Assertions are enabled.
+Service extensions are enabled.
+Compilation is optimized for fast development and run cycles (but not for execution speed, binary size, or deployment).
+Debugging is enabled, and tools supporting source level debugging (such as DevTools) can connect to the process.
+
+
+Profile
+In profile mode, some debugging ability is maintained—enough to profile your app’s performance. Profile mode is disabled on the emulator and simulator, because their behavior is not representative of real performance. On mobile, profile mode is similar to release mode, with the following differences:
+
+Some service extensions, such as the one that enables the performance overlay, are enabled.
+Tracing is enabled, and tools supporting source-level debugging (such as DevTools) can connect to the process.
+
+
+---
+
+59.How to convert a `List` into a `Map` in Dart?
+
+<img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/list.png' alt="list"/>
+
+
+---
+
+60.What does `non-nullable` by default mean?
+
+<img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/no_null.png' alt="no_null"/>
+
+---
+
+61.`Expanded` vs `Flexible`?
+
+<img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/flex1.png' alt="flex1"/>
+
+<img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/flex2.png' alt="flex2"/>
+
+
+---
+
+62.Why is `exit(0)` not preferred for closing an app?
+
+<img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/exit0.png' alt="exit0"/>
+
+---
+
+63.What is the difference between `main` function and the `runApp()` function in Flutter?
+
+In Dart, main() acts as the entry point for the program whereas runApp() attaches the given widget to the screen.
+
+
+---
+
+64.What is `Dart` and why does Flutter use it?
+
+
+Dart is AOT (Ahead Of Time) compiled to fast, predictable, native code, which allows almost all of Flutter to be written in Dart. This not only makes Flutter fast, virtually everything (including all the widgets) can be customized.
+
+Dart can also be JIT (Just In Time) compiled for exceptionally fast development cycles and game-changing workflow (including Flutter’s popular sub-second stateful hot reload).
+
+Dart makes it easier to create smooth animations and transitions that run at 60fps. Dart can do object allocation and garbage collection without locks. And like JavaScript, Dart avoids preemptive scheduling and shared memory (and thus locks). Because Flutter apps are compiled to native code, they do not require a slow bridge between realms (e.g., JavaScript to native). They also start up much faster.
+
+Dart allows Flutter to avoid the need for a separate declarative layout language like JSX or XML, or separate visual interface builders, because Dart’s declarative, programmatic layout is easy to read and visualize. And with all the layout in one language and in one place, it is easy for Flutter to provide advanced tooling that makes layout a snap.
+
+Developers have found that Dart is particularly easy to learn because it has features that are familiar to users of both static and dynamic languages
+
+---
+
+65.Where are the `layout` files? Why doesn’t Flutter have layout files?
+
+In the Android framework, we separate an activity into layout and code. Because of this, we need to get references to views to work on them in Java. (Of course Kotlin lets you avoid that.) The layout file itself would be written in XML and consist of Views and ViewGroups.
+
+Flutter uses a completely new approach where instead of Views, you use widgets. A View in Android was mostly an element of the layout, but in Flutter, a Widget is pretty much everything. Everything from a button to a layout structure is a widget. The advantage here is in customisability. Imagine a button in Android. It has attributes like text which lets you add text to the button. But a button in Flutter does not take a title as a string, but another widget. Meaning inside a button you can have text, an image, an icon and pretty much anything you can imagine without breaking layout constraints. This also lets you make customised widgets pretty easily whereas in Android making customised views is a rather difficult thing to do
