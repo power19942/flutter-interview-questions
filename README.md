@@ -2,6 +2,10 @@
 
 this file contains a list of flutter interview questions with answers
 
+### note ###
+
+these questions and answers are collected from different resources on the internet like stackoverflow, medium and other githup repositories
+
 ---
  Flutter Questions and Answers
 ---
