@@ -47,7 +47,7 @@ Tree shaking is the process of eliminating dead code, by only including code tha
 
 4.What is a `Spacer` widget?
 
-Spacer manages the empty space between the widgets with flex container. Evenly with the Rowand Column MainAxis alignment we can manage the space as well
+Spacer manages the empty space between the widgets with flex container. Evenly with the Row and Column MainAxis alignment we can manage the space as well
 
 ---
 
