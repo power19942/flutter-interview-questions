@@ -161,7 +161,7 @@ When you want the widget to be big as the parent widget allow
 
 ---
 
-19.What is `Ticker`, `Tween` and `AnimatedController`?
+19.What is `Ticker`, `Tween` and `AnimationController`?
 
 <img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/ticker.png' alt="ticker"/>
 
