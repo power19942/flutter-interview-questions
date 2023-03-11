@@ -86,134 +86,141 @@ StatefulWidget söz konusu olduğunda, State bilgisi uygulama sırasında ara s�
 
 8.Dart'da `pubspec` dosyası nedir?
 
-The pubspec file manages the assets and dependencies for a Flutter app.
+Pubspec dosyası, bir Flutter uygulaması için varlıkları(assets) ve bağımlılıkları(dependencies) yönetir.
 
 ---
 
-9.How is Flutter native?
+9.Flutter nasıl yereldir(native)?
 
-Flutter uses only the canvas of the native platform and draws the UI and all the components from scratch. All the UI elements look the same as native ones. This mainly reduces the burden of time for converting through some language to the native one and speeds up the UI rendering time. As a result, the UI performance is remarkably high
-
----
-
-10.What is a `Navigator` and what are `Routes` in Flutter?
-
-Navigation and routing are some of the core concepts of all mobile application, which allows the user to move between different pages. We know that every mobile application contains several screens for displaying different types of information. For example, an app can have a screen that contains various products. When the user taps on that product, immediately it will display detailed information about that product
+Flutter, yalnızca yerel platformun tuvalini kullanır ve kullanıcı arayüzünü ve tüm bileşenleri sıfırdan çizer. Tüm UI öğeleri, yerel öğelerle aynı görünür. Bu, temel olarak bazı dilleri yerel dile dönüştürmek için harcanan zamanı azaltır ve kullanıcı arabirimi oluşturma süresini hızlandırır. Sonuç olarak, UI performansı oldukça yüksektir.
 
 ---
 
-11.What is a `PageRoute`?
+10.Flutter'da `Navigator` ve `Routes` nedir?
 
-Allow us to add animation transaction to the route
+Navigasyon(navigation) ve yönlendirme(routing), kullanıcının farklı sayfalar arasında hareket etmesine izin veren tüm mobil uygulamaların temel kavramlarından bazılarıdır. Her mobil uygulamanın farklı bilgi türlerini görüntülemek için birkaç ekran içerdiğini biliyoruz. Örneğin, bir uygulamanın çeşitli ürünleri içeren bir ekranı olabilir. Kullanıcı o ürüne dokunduğunda, hemen o ürünle ilgili ayrıntılı bilgileri görüntüler.
+
+---
+
+11.`PageRoute` nedir?
+
+Rotaya animasyon geçişi eklememize izin verir
 https://github.com/divyanshub024/Flutter-route-transition
 
 ---
 
 
-12.Explain `async`, `await` and `Future`?
+12.`async`, `await` ve `Future` terimlerini açıklayın?
 
 
-Async means that this function is asynchronous and you might need to wait a bit to get its result.
-Await literally means - wait here until this function is finished and you will get its return value.
+Async, bu işlevin eşzamansız(asynchronous) olduğu ve sonucunu almak için biraz beklemeniz gerekebileceği anlamına gelir.
+Await kelimenin tam anlamıyla - bu işlev bitene kadar burada bekleyin ve dönüş değerini alacaksınız.
 Future is a type that ‘comes from the future’ and returns value from your asynchronous function. It can complete with success(.then) or with
 an error(.catchError)
+Future, 'gelecekten gelen'(comes from the future) bir türdür ve eşzamansız(asynchronous) işlevinizden değer döndürür. success(.then) veya bir error(.catchError) ile tamamlanabilir
 
 https://www.youtube.com/watch?v=SmTCmDMi4BY
 
 ---
 
-13.how can you update a listview dynamically?
+13.bir listview'i dinamik olarak nasıl güncelleyebilirsiniz?
 
-By using setState to update the listview item source and rebuild the UI 
-
----
-
-14.What is a `Stream`?
-
-A stream is like a pipe, you put a value on the one end and if there’s a listener on the other end that listener will receive that value. A Stream can have multiple listeners and all of those listeners will receive the same value when it’s put in the pipeline. The way you put values on a stream is by using a StreamController
+listview öğesi kaynağını güncellemek ve kullanıcı arayüzünü yeniden oluşturmak için setState kullanarak 
 
 ---
 
-15.What are `keys` in Flutter and when should you use it?
+14.`Stream` nedir?
 
+Stream bir boru(pipe) gibidir, bir uca bir değer koyarsınız ve diğer uçta bir dinleyici(listener) varsa o dinleyici o değeri alır. Bir Stream birden çok dinleyicisi olabilir ve bu dinleyicilerin tümü, boru hattına konulduğunda aynı değeri alır. Bir Stream'e değer koymanın yolu, bir StreamController kullanmaktır.
 
-You don't need to use Keys most of the time, the framework handles it for you and uses them internally to differentiate between widgets. There are a few cases where you may need to use them though.
+---
 
-A common case is if you need to differentiate between widgets by their keys, ObjectKey and ValueKey can be useful for defining how the widgets are differentiated
+15.Flutter'da `keys` nedir ve ne zaman kullanmalıyız?
 
+Çoğu zaman keys kullanmanıza gerek yoktur, çerçeve(framework) bunu sizin yerinize halleder ve widget'lar arasında ayrım yapmak için bunları dahili olarak kullanır. Yine de bunları kullanmanız gerekebilecek birkaç durum vardır.
 
+Widget'ları caselere göre ayırmanız gerekirse, ObjectKey ve ValueKey, widget'ların nasıl farklılaştırılacağını tanımlamak için yararlı olabilir.
 
-Another example is that if you have a child you want to access from a parent, you can make a GlobalKey in the parent and pass it to the child's constructor. Then you can do globalKey.state to get the child's state (say for example in a button press callback). Note that this shouldn't be used excessively as there are often better ways to get around it
+Başka bir örnek, bir ebeveynden erişmek istediğiniz bir çocuğunuz varsa, ebeveynde bir GlobalKey oluşturabilir ve bunu çocuğun yapıcısına(constructor) iletebilirsiniz. Ardından, çocuğun state'ini almak için globalKey.state yapabilirsiniz (örneğin, callback bir düğmeye basın). Bunu aşmanın genellikle daha iyi yolları olduğundan, bunun aşırı kullanılmaması gerektiğini unutmayın.
 
 https://www.youtube.com/watch?v=kn0EOS-ZiIc&feature=emb_title
 
 ---
 
-16.What are `GlobalKeys`?
+16.`GlobalKeys` nedir?
 
-GlobalKeys have two uses: they allow widgets to change parents anywhere in your app without losing state, or they can be used to access information about another widget in a completely different part of the widget tree. An example of the first scenario might if you wanted to show the same widget on two different screens, but holding all the same state, you’d want to use a GlobalKey
+GlobalKey'lerin iki kullanımı vardır: widget'ların uygulamanızın herhangi bir yerinde state'lerini kaybetmeden ebeveynlerini değiştirmelerine izin verirler veya widget ağacının tamamen farklı bir bölümündeki başka bir widget hakkındaki bilgilere erişmek için kullanılabilirler. İlk senaryonun bir örneği, aynı widget'ı iki farklı ekranda göstermek isteyip istemediğinizi, ancak aynı state'i koruyarak bir GlobalKey kullanmak isteyip istemediğinizi gösterebilir.
 
 ---
 
-17.When should you use mainAxisAlignment and crossAxisAlignment?
+17.mainAxisAlignment ve crossAxisAlignment ne zaman kullanmalısınız?
 
 <img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/mainAxisAlignment.png' alt="mainAxisAlignment"/>
 
 ---
 
-18.When can you use `double.INFINITY`?
+18.`double.INFINITY`'yi ne zaman kullanabilirsiniz?
 
-When you want the widget to be big as the parent widget allow
+Widget'ın ana widget'ın izin verdiği kadar büyük olmasını istediğinizde
 
 ---
 
-19.What is `Ticker`, `Tween` and `AnimationController`?
+19.`Ticker`, `Tween` ve `AnimationController` nedir?
 
 <img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/ticker.png' alt="ticker"/>
+-- fotoğrafın türkçesi -- 
+AnimationController: Bu, "Animation" yönetir. İşlenen her kare için yeni bir değer üretir, animasyon durumunu takip eder ve bir animasyonu oynatma (ileri), geri alma veya durdurma işlevselliğini ortaya çıkarır.
+Animation/ Tween: Bu, bir eğri boyunca baştan sona nasıl hareket edileceği ile birlikte başlangıç ve bitiş değerlerini tanımlar. Bu nesne, tuttuğu değer değiştiğinde, ValueListenable protokolü aracılığıyla denetleyiciye(controller) bildirimde bulunacaktır.
+Ticker: Bir ticker, frameCallback'i dinleyen ve tick geçerli çerçeve ile son çerçeve arasındaki geçen süreyi ticker listner'a ileten bir işlevi çağıran bir sınıftır. Bizim durumumuzda controller.
 
-Animation Sequences
-To achieve sequence animation we’ll introduce a new Widget that also helps with reducing animation code called AnimatedBuilder which allows you to rebuild your widget through a builder function every time a new animation value is calculated
+Animation Sequences(Animasyon dizileri)
+sequence animation elde etmek için, her yeni animasyon değeri hesaplandığında widget'ınızı bir oluşturucu işlevi aracılığıyla yeniden oluşturmanıza izin veren AnimatedBuilder adlı animasyon kodunun azaltılmasına da yardımcı olan yeni bir Widget sunacağız.
 
 ---
 
-20.What is `ephemeral` state?
+20.`ephemeral` state nedir?
 
 <img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/ephemeral.png' alt="ephemeral"/>
+-- fotoğrafın türkçesi --
+Ephemeral state (bazen UI state veya local state olarak adlandırılır ), tek bir widget'da düzgün bir şekilde içerebileceğiniz durumdur.
+
+Bu kasıtlı olarak belirsiz bir tanımdır, bu yüzden işte birkaç örnek.
+
+geçerli sayfa bir PageView
+karmaşık bir animasyonun mevcut ilerlemesi
+geçerli seçili sekme BottomNavigationBar
 
 ---
 
-21.What is an `AspectRatio` widget used for?
+21.Bir `AspectRatio` widget ne için kullanılır?
 
-
-AspectRatio Widget tries to find the best size to maintain aspect ration while respecting it’s layout constraints. The AspectRatio Widget can be used to adjust the aspect ratio of widgets in your app
-
----
-
-22.How would you access `StatefulWidget` properties from its State?
-
-Using the widget property
+AspectRatio Widget, düzen kısıtlamalarına uyarken en boy oranını korumak için en iyi boyutu bulmaya çalışır. AspectRatio Widget'ı, uygulamanızdaki widget'ların en boy oranını ayarlamak için kullanılabilir
 
 ---
 
-23.Mention two or more operations that would require you to use or turn a `Future`
+22.State'den `StatefulWidget` özelliklerine nasıl erişirsiniz?
 
-	1. Calling api using http
-	2. Getting result from geolocator package 
-	3. With FutureBuilder widget 
+widget property(özelliklerini) kullanarak
 
 ---
 
-24.What is the purpose of a `SafeArea`?
+23.Bir `Future` kullanmanızı veya dönüştürmenizi gerektirecek iki veya daha fazla işlemden bahsedin
 
-
-SafeArea is basically a glorified Padding widget. If you wrap another widget with SafeArea, it adds any necessary padding needed to keep your widget from being blocked by the system status bar, notches, holes, rounded corners and other "creative" features by manufactures
+	1. API'yi http kullanarak çağırma
+	2. Geolocator paketinden sonuç(result) alma
+	3. FutureBuilder widget'ı ile
 
 ---
 
-25.When to use a `mainAxisSize`?
+24.`SafeArea`'nın amacı nedir?
 
+SafeArea, temel olarak yüceltilmiş bir Dolgu(Padding) widget'ıdır. Başka bir widget'ı SafeArea ile sararsanız, widget'ınızın sistem durum çubuğu(system status bar), çentikler(notches), delikler(holes), yuvarlatılmış köşeler(rounded corners) ve üreticilerin(manufactures) diğer "yaratıcı(creative)" özellikleri tarafından engellenmesini önlemek için gereken tüm gerekli dolguyu ekler.
 
-When you use MainAxisSize on your Column or Row, they will determine the size of the Column or Row along the main axis, i.e, height for Column and width for Row
+---
+
+25.`mainAxisSize` ne zaman kullanılır?
+
+Column veya Row'da MainAxisSize kullandığınızda, ana eksen(main axis) boyunca Column veya Row boyutunu, yani Column için yüksekliği ve Row için genişliği belirlerler.
 
 https://itnext.io/flutter-mainaxissize-max-vs-min-d9095d8f7914
 
@@ -228,7 +235,7 @@ https://itnext.io/flutter-mainaxissize-max-vs-min-d9095d8f7914
 ---
 
 
-27.List the `Visibility` widgets in flutter and the differences?
+27.Flutter'daki `Visibility` widget'larını ve farklarını listeleyin?
 
 	1. Visibility
 	2. Opacity
@@ -238,27 +245,27 @@ https://medium.com/@danle.sdev/widget-hide-and-seek-a-guide-to-managing-flutter-
 
 ---
 
-28.Can we use `Color` and `Decoration` property simultaneously in the Container?
+28.Container'da `Color` ve `Decoration` property'sini(özelliğini) aynı anda kullanabilir miyiz?
 
-No
+Hayır
 
-The color property is a shorthand for creating a BoxDecoration with a color field. If you are adding a box decoration, simply place the color on the BoxDecoration.
+color özelliği, bir renk alanıyla bir BoxDecoration oluşturmak için bir kısayoldur. Bir BoxDecoration ekliyorsanız, rengi BoxDecoration'a yerleştirmeniz yeterlidir.
 
 ---
 
-29.Inorder for the `CrossAxisAlignment.baseline` to work what is another property that we need to set?
+29.`CrossAxisAlignment.baseline`'ın çalışması için ayarlamamız gereken başka bir özellik nedir?
 
 crossAxisAlignment: CrossAxisAlignment.baseline
 textBaseline: TextBaseline.ideographic,
 
 ---
 
-30.when should we use a `resizeToAvoidBottomInset`?
+30.ne zaman `resizeToAvoidBottomInset` kullanmalıyız?
 
-
-If true the body and the scaffold's floating widgets should size themselves to avoid the onscreen keyboard whose height is defined by the ambient MediaQuery's MediaQueryData.viewInsets bottom property.
+true ise, body ve scaffold'ın kayan(floating) widget'ları, yüksekliği ortam MediaQuery'nin MediaQueryData.viewInsets bottom özelliği tarafından tanımlanan ekran klavyesinden kaçınmak için kendilerini boyutlandırmalıdır.
 
 For example, if there is an onscreen keyboard displayed above the scaffold, the body can be resized to avoid overlapping the keyboard, which prevents widgets inside the body from being obscured by the keyboard
+Örneğin, Scaffold'ın üzerinde görüntülenen bir ekran klavyesi varsa, klavyenin üst üste binmesini önlemek için body yeniden boyutlandırılabilir, bu da body içindeki widget'ların klavye tarafından gizlenmesini önler.
 
 `With resizeToAvoidBottomInset`
 https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/316760/7da984e6-ec32-7989-174c-0e104e4c5557.gif
@@ -268,51 +275,54 @@ https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/316760/0c933d45-82a2
 
 ---
 
-31.What is the difference between `as`,`show` and `hide` in an import statement?
+31.Bir import ifadesinde `as`,`show` ve `hide` arasındaki farklar nelerdir?
 
 <img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/as.png' alt="as"/>
+-- fotoğrafın türkçesi --
+as ile içe aktarılan kitaplığa bir ad veriyorsunuz. Genellikle, bir kitaplığın(library) çok sayıda küresel işlevi(global functions) varsa, namespace'inizi kirletmesini önlemek için yapılır. as kullanıyorsanız, söz konusu kitaplığın tüm işlevlerine ve sınıflarına örneğinizde yaptığınız gibi erişerek erişebilirsiniz: GoogleMap.LatLng.
+
+show (ve hide) ile, uygulamanızda görünür olmasını istediğiniz belirli sınıfları seçebilirsiniz.
 
 ---
 
-32.What is the importance of a `TextEditingController`?
+32.Bir `TextEditingController`'ın önemi nedir?
 
-Whenever the user modifies a text field with an associated TextEditingController, the text field updates value and the controller notifies its listeners. Listeners can then read the text and selection properties to learn what the user has typed or how the selection has been updated
+Kullanıcı, ilişkili bir TextEditingController ile bir metin alanını(text field) her değiştirdiğinde, metin alanı değeri günceller ve denetleyici(controller), dinleyicilerini(listeners) bilgilendirir. Dinleyiciler, kullanıcının ne yazdığını veya seçimin nasıl güncellendiğini öğrenmek için metin(text) ve seçim(selection) özelliklerini okuyabilir.
 
 ---
 
-33.Why do we use a Reverse property in a `Listview`?
+33.Neden `Listview`'da reverse(ters) özelliğini kullanıyoruz?
 
 List<String> animals = ['cat', 'dog', 'duck'];
 List<String> reversedAnimals = animals.reversed.toList();
 
 ---
 
-34.Difference between a Modal and Persistent BottomSheet with an example?
+34.Bir örnekle Modal ve Persistent BottomSheet arasındaki fark?
 
 ---
 
-35.How is an `Inherited Widget` different from a `Provider`?
+35.`Inherited Widget`'ın `Provider`'dan farkı nedir?
 
-Provider basically takes the logic of InheritedWidgets, but reduce the boilerplate to the strict minimum
+Provider temel olarak InheritedWidgets mantığını alır, ancak ortak metni kesin minimuma indirir
 
 ---
 
-36.What is an `UnmodifiableListView`?
+36.`UnmodifiableListView` nedir?
 
-Cannot change the list items by adding or removing
+Liste öğeleri(list items) ekleyerek veya çıkararak değiştirilemez
 
 https://github.com/filiph/state_experiments/issues/5
 
 ---
 
-37.Difference between these operators `??` and `?.`
+37.`??` ve `?.` işleçleri arasındaki fark
 
 `??` 
 expr1 ?? expr2
-If expr1 is non-null, returns its value; otherwise, evaluates and returns the value of expr2.
+expr1 boş değilse, değerini döndürür; aksi halde expr2'nin değerini değerlendirir ve döndürür.
 
-
-`?.` Like . but the leftmost operand can be null; example: foo?.bar selects property bar from expression foo unless foo is null (in which case the value of foo?.bar is null)
+`?.` gibi. ancak en soldaki işlenen boş olabilir; örnek: foo?.bar, foo null olmadığı sürece foo ifadesinden özellik çubuğunu seçer (bu durumda foo?.bar'ın değeri null olur)
 
 
 https://dart.dev/guides/language/language-tour
