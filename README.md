@@ -66,19 +66,25 @@ Hot Restart, Hot Reload'dan çok farklıdır. Hot Restart, korunmuş State değe
 ---
 
 
-6.What is an `InheritedWidget`?
+6.`InheritedWidget` nedir?
 
 https://www.youtube.com/watch?v=Zbm3hjPjQMk
 
 ---
 
-7.Why is the build() method on State and not StatefulWidget?
+7.build() yöntemi neden State'te ve StatefulWidget'ta değil?
 
 <img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/stateful_build.png' alt="stateful_build"/>
+-- fotoğrafın türkçeye çevirilmiş hali --
+StatefulWidget'in ayrı bir State sınıfı kullanması ve kendi bünyesinde build metoduna sahip olmamasının nedeni, bir Widget içindeki tüm alanların değişmez olması ve bunun tüm alt sınıflarını içermesidir.
+
+StatelessWidget'ın kendi yapısına ve içinde tanımlanmış diğer ilişkili yöntemlere sahip olduğunu fark etmiş olabilirsiniz, ancak bu, StatelessWidget'ın tamamen sağlanan bilgiler kullanılarak oluşturulan ve State'inde gelecekte herhangi bir değişiklik beklemeyen doğası nedeniyle mümkün olmuştur.
+
+StatefulWidget söz konusu olduğunda, State bilgisi uygulama sırasında ara sıra değişir (veya değişmesi beklenir), bu nedenle bu bilgi, Widget sınıf koşullarını (tüm alanlar sabittir) karşılamak için son bir alanda (derleme) depolamaya uygun değildir. Bu nedenle State sınıfı tanıtıldı. Tanımlı Durumunuzu StatefulWidget'ınıza eklemek için createState işlevini geçersiz kılmanız(override) ve tüm bu değişikliğin ayrı bir sınıfta olmasına izin vermeniz yeterlidir.
 
 ---
 
-8.What is a `pubspec` file in Dart?
+8.Dart'da `pubspec` dosyası nedir?
 
 The pubspec file manages the assets and dependencies for a Flutter app.
 
