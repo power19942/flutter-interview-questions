@@ -264,7 +264,6 @@ textBaseline: TextBaseline.ideographic,
 
 true ise, body ve scaffold'ın kayan(floating) widget'ları, yüksekliği ortam MediaQuery'nin MediaQueryData.viewInsets bottom özelliği tarafından tanımlanan ekran klavyesinden kaçınmak için kendilerini boyutlandırmalıdır.
 
-For example, if there is an onscreen keyboard displayed above the scaffold, the body can be resized to avoid overlapping the keyboard, which prevents widgets inside the body from being obscured by the keyboard
 Örneğin, Scaffold'ın üzerinde görüntülenen bir ekran klavyesi varsa, klavyenin üst üste binmesini önlemek için body yeniden boyutlandırılabilir, bu da body içindeki widget'ların klavye tarafından gizlenmesini önler.
 
 `With resizeToAvoidBottomInset`
@@ -329,169 +328,179 @@ https://dart.dev/guides/language/language-tour
 
 ---
 
-38.What is the purpose of `ModalRoute.of()`?
+38.`ModalRoute.of()`'un amacı nedir?
 
- ModalRoute.of() method. This method returns the current route with the arguments
+ ModalRoute.of() yöntemi. Bu yöntem, geçerli rotayı argümanlarla döndürür.
 
 
 `final args = ModalRoute.of(context).settings.arguments;`
 
 ---
 
-39.Difference between a `Navigator.pushNamed` and `Navigator.pushReplacementNamed`?
+39.`Navigator.pushNamed` ve `Navigator.pushReplacementNamed` arasındaki fark nedir?
 
 <img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/pushNamed.png' alt="pushNamed"/>
 
 ---
 
-40.Difference between a Single Instance and Scoped Instance ?
+40.Single Instance ve Scoped Instance arasındaki fark nedir?
 
 https://codewithandrea.com/articles/2019-06-10-global-access-vs-scoped-access/
 
 ---
 
-41.Difference between getDocuments() vs snapshots()?
+41.getDocuments() ve snapshots() arasındaki fark nedir?
 
 <img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/getDocuments.png' alt="getDocuments"/>
+-- fotoğrafın türkçesi --
+getDocuments() öğesini çağırdığınızda, Firestore istemcisi sunucudan sorguyla eşleşen belgeleri bir kez alır. Bu biraz zaman alabileceğinden, bir Future<QuerySnapshot> döndürür.
+snapshots() çağırdığınızda, Firestore istemcisi belgeleri alır ve ardından sorgunuzu etkileyen değişiklikler için sunucudaki veritabanını izlemeye devam eder. Dolayısıyla, sorgunuzu etkileyen kullanıcı koleksiyonunda belge yazılırsa, kodunuz tekrar çağrılır. Bu, bir QuerySnapshot akışı(stream) döndürür.
 
 ---
 
-42.What is a `vsync`?
+42.`vsync` nedir?
 
-Vsync basically keeps the track of screen, so that Flutter does not renders the animation when the screen is not being displayed
-
----
-
-43.When does the animation reach `completed` or `dismissed` status?
-
-animations that progress from 0.0 to 1.0 will be dismissed when their value is 0.0. An animation might then run forward (from 0.0 to 1.0) or perhaps in reverse (from 1.0 to 0.0). Eventually, if the animation reaches the end of its range (1.0), the animation reaches the completed status.
+Vsync temel olarak ekranın izini tutar, böylece Flutter ekran görüntülenmediğinde animasyonu oluşturmaz.
 
 ---
 
-44.Difference between `AnimationController` and `Animation`?
+43.Animasyon ne zaman `completed` veya `dismissed` durumuna ulaşır?
 
-AnimationController is for how long the animation would be and how to control from time, upper and lower boundary, how to control data with time, length, sequence, etc. while AnimationTween is for the range of animation with time, colour, range, sequence, etc as long the animation would be while
+0,0'dan 1,0'a ilerleyen animasyonlar, değerleri 0,0 olduğunda atılacaktır. Bir animasyon daha sonra ileri (0.0'dan 1.0'a) veya belki tersine (1.0'dan 0.0'a) çalışabilir. Sonunda, animasyon aralığının (1.0) sonuna ulaşırsa, animasyon tamamlanmış durumuna ulaşır.
+
 
 ---
 
-45.When to use a SingleTickerProviderStateMixin and TickerProviderStateMixin?
+44.`AnimationController` ve `Animation` arasındaki fark nedir?
+
+AnimationController, animasyonun ne kadar süreceği ve zaman(time), üst(upper) ve alt(lower) sınırdan nasıl kontrol edileceği, verilerin zaman, uzunluk, sıra vb. ile nasıl kontrol edileceği içindir. AnimationTween ise zaman, renk, aralık, dizi vb. ile animasyon aralığı içindir.
+---
+
+45.SingleTickerProviderStateMixin ve TickerProviderStateMixin ne zaman kullanılır?
 
 ---
 
-46.Define a `TweenAnimation` ?
+46.`TweenAnimation`'ı açıkla?
 
-Short for in-betweening. In a tween animation, the beginning and ending points are defined, as well as a timeline, and a curve that defines the timing and speed of the transition. The framework calculates how to transition from the beginning point to the end point
-
----
-
-47.State the importance of a `Ticker` ?
-
-Ticker is the refresh rate of our animations. This is what we want to pause when our clock is hidden.
-
-A bonus for using Ticker is that this allows the dev-tool to “slow” our animation.
-If we use “Slow animations”, then our clock is slowed by 50%. This is a good sign, as it means it will be a lot easier to test our clock!
+Arada kalmanın kısaltması. Bir ara animasyonunda, başlangıç ve bitiş noktalarının yanı sıra bir zaman çizelgesi ve geçişin zamanlamasını ve hızını tanımlayan bir eğri tanımlanır. framework, başlangıç noktasından bitiş noktasına nasıl geçileceğini hesaplar
 
 ---
 
+47.`Ticker`'ın önemini belirtin?
 
-48.Why do we need a `mixins` ?
+Ticker, animasyonlarımızın yenileme hızıdır. Saatimiz(clock) gizlendiğinde duraklatmak istediğimiz şey budur.
 
-Mixins are very helpful when we want to share a behavior across multiple classes that don’t share the same class hierarchy, or when it doesn’t make sense to implement such a behavior in a superclass
-
----
-
-49.When do you use the `WidgetsBindingObserver`?
-
-To check when the system puts the app in the background or returns the app to the foreground
+Ticker'ı kullanmanın bir avantajı, dev-tool'un animasyonumuzu "yavaşlatmasına(slow)" izin vermesidir.
+“Yavaş animasyonlar(slow animations)” kullanırsak saatimiz(clock) %50 yavaşlar. Bu iyi bir işaret, çünkü bu, saatimizi test etmenin çok daha kolay olacağı anlamına geliyor!
 
 ---
 
-50.Why does the `first` flutter app take a very long developing time?
 
-When you are going to build the Flutter app for the first time, it takes a very long time than usual because Flutter builds a device-specific IPA or APK file. In this process, the Xcode and Gradle are used to build a file, which usually takes a long time
+48.Neden bir `mixins`'e ihtiyacımız var ?
 
----
-
-51.Define what is an `App State`?
-
-
-The App State is also called an application state or shared state. The app state can be distributed across multiple areas of your app and the same is maintained with user sessions.
-
-Following are the examples of App State:
-
-Login info
-User preferences
-The shopping cart of an e-commerce application
+Aynı sınıf hiyerarşisini paylaşmayan birden fazla sınıf arasında bir davranışı paylaşmak istediğimizde veya böyle bir davranışı bir üst sınıfta uygulamak mantıklı olmadığında, mixins çok yardımcı olur.
 
 ---
 
-52.What are the two types of `Streams` available in Flutter?
+49.`WidgetsBindingObserver` ne zaman kullanılır?
+
+Sistemin uygulamayı ne zaman arka plana koyduğunu veya uygulamayı ön plana döndürdüğünü kontrol etmek için
+
+---
+
+50.`ilk` flutter uygulamasının geliştirilmesi neden çok uzun sürüyor?
+
+Flutter uygulamasını ilk kez oluşturacağınız zaman, Flutter cihaza özel bir IPA veya APK dosyası oluşturduğu için normalden çok daha uzun sürüyor. Bu süreçte, genellikle uzun zaman alan bir dosya oluşturmak için Xcode ve Gradle kullanılır.
+
+---
+
+51.`App State` nedir tanımlayın?
+
+App State(uygulama durumu), application state veya shared state olarak da adlandırılır. App state, uygulamanızın birden çok alanına dağıtılabilir ve kullanıcı oturumlarında(sessions) da aynı durum korunur.
+
+App State örnekleri aşşağıdadır:
+
+Login info(giriş bilgileri)
+User preferences(kullanıcı tercihleri)
+Bir e-ticaret uygulamasının alışveriş sepeti
+
+---
+
+52.Flutter'da bulunan iki tür `Streams` nelerdir?
 
 
-Single subscription streams:
+Single subscription streams(Tek abonelik akışları):
 
-It is a popular and common type of stream.
-It consists of a series of events that are parts of a large whole. Here all events have to be delivered in a defined order without even missing a single event.
-It is a type of stream that you get when you get a web request or receive a file.
-This stream can only be listed once. Listing it, again and again, means missing initial values and overall stream makes no sense at all.
+Popüler ve yaygın bir stream türüdür.
+Büyük bir bütünün parçaları olan bir dizi olaydan oluşur. Burada, tek bir olay bile kaçırılmadan, tüm olayların tanımlanmış bir sırayla iletilmesi gerekir.
+Bir web isteği aldığınızda veya bir dosya aldığınızda aldığınız bir stream türüdür.
+Bu stream yalnızca bir kez listelenebilir. Tekrar tekrar listelemek, başlangıç değerlerinin eksik olması anlamına gelir ve genel akış(overall stream) hiç mantıklı değildir.
 When the listing starts in this stream the data gets fetched and provided in chunks.
+Listeleme bu stream'de başladığında, veriler alınır(fetch) ve parçalar halinde sağlanır.
 
 
-Broadcast streams:
+Broadcast streams(Yayın akışları):
 
-This stream is meant for the individual messages that can be handled one at a time. These types of streams are commonly used for mouse events in a browser.
-You can list this type of stream at any time.
-Multiple listeners can listen at a time and also you have a chance to listen after the cancellation of the previous subscription
-
----
-
-53.What do you know about Dart `Isolates`?
-
-To gain concurrency Dart makes use of the Isolates method which works on its own without sharing memory but uses passing or message communication.
+Bu stream, birer birer işlenebilen bireysel mesajlar içindir. Bu tür akışlar genellikle bir tarayıcıdaki fare(mouse) olayları için kullanılır.
+Bu stream türünü istediğiniz zaman listeleyebilirsiniz.
+Birden fazla dinleyici(listeners) aynı anda dinleyebilir ve ayrıca önceki aboneliğinizin(previous subscription) iptal edilmesinden sonra da dinleme şansınız olur.
 
 ---
 
-54.What is a `Flutter inspector`?
+53.Dart `Isolates` hakkında ne biliyorsunuz?
 
-Flutter inspector is a tool that helps in visualizing and exploring the widget trees. It helps in understanding the present layout and diagnoses various layout issues
+Eşzamanlılık elde etmek için Dart, belleği paylaşmadan kendi başına çalışan ancak geçiş veya mesaj iletişimini kullanan İzolatlar(Isolates) yöntemini kullanır.
+
+---
+
+54.`Flutter inspector` nedir?
+
+Flutter inspector(denetçi), pencere öğesi ağaçlarını(widget trees) görselleştirmeye ve keşfetmeye yardımcı olan bir araçtır(tool). Mevcut düzeni(present layout) anlamaya yardımcı olur ve çeşitli düzen sorunlarını(layout issues) teşhis eder
 
 ---
 
 55.`Stream` vs `Future`?
 
-The difference is that Futures are about one-shot request/response (I ask, there is a delay, I get a notification that my Future is ready to collect, and I'm done!) whereas Streams are a continuous series of responses to a single request (I ask, there is a delay, then I keep getting responses until the stream dries up or I decide to close it and walk away) 
+The difference is that Futures are about one-shot request/response (I ask, there is a delay, I get a notification that my Future is ready to collect, and I'm done!) whereas Streams are a continuous series of responses to a single request (I ask, there is a delay, then I keep getting responses until the stream dries up or I decide to close it and walk away)
+Aradaki fark, Futures'ın tek seferlik bir istek/yanıtla ilgili olmasıdır (soruyorum, bir gecikme var, Future'ın toplanmaya hazır olduğuna dair bir bildirim(notification) alıyorum ve işim bitti!) oysa Streams sürekli bir dizi yanıttır. tek bir istek (soruyorum, gecikme var, sonra stream kuruyana kadar yanıt almaya devam ediyorum veya kapatıp gitmeye karar veriyorum)
 
 ---
 
-56.How to compare two dates that are constructed differently in Dart?
+56.Dart'ta farklı şekilde oluşturulmuş iki tarih nasıl karşılaştırılır??
 
 <img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/date.png' alt="date"/>
 
 ---
 
-57.What's the difference between `async` and `async*` in Dart?
+57.Dart'da `async` ve `async*` arasındaki fark nedir?
 
 <img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/async.png' alt="async"/>
+-- fotoğrafın türkçesi --
+Bir işlevi async veya async* olarak işaretlemek, onun async/await for a Future'ı kullanmasına izin verir.
+Her ikisi arasındaki fark, async*'in her zaman bir Stream döndürmesi ve yield anahtar kelimesi aracılığıyla bir değer yaymak için bazı syntactical sugar(“Sözdizimsel şeker”, bilgisayar programlamasında sözdizimi değişiklikleri için kullanılan ve insanların kodlamasını kolaylaştıran bir terimdir.) sunmasıdır.
+
+Bu işlev, her saniye artan bir değer yayar.
 
 ---
 
 58.`Debug` vs `Profile` mode?
 
 In debug mode, the app is set up for debugging on the physical device, emulator, or simulator.
+Hata ayıklama(debug) modunda uygulama, fiziksel cihazda(physical device), emülatörde(emulator) veya simülatörde(simulator) hata ayıklamak(debugging) için kurulur.
 
 Debug 
 
-Assertions are enabled.
-Service extensions are enabled.
-Compilation is optimized for fast development and run cycles (but not for execution speed, binary size, or deployment).
-Debugging is enabled, and tools supporting source level debugging (such as DevTools) can connect to the process.
+Assertions are enabled. - İddialar etkinleştirildi.
+Service extensions are enabled. - Hizmet uzantıları etkinleştirildi.
+Compilation is optimized for fast development and run cycles (but not for execution speed, binary size, or deployment). - Derleme, hızlı geliştirme ve çalıştırma döngüleri için optimize edilmiştir (ancak yürütme hızı, ikili boyut veya dağıtım için değil).
+Debugging is enabled, and tools supporting source level debugging (such as DevTools) can connect to the process. - Hata ayıklama etkindir ve kaynak düzeyinde hata ayıklamayı destekleyen araçlar (DevTools gibi) işleme bağlanabilir.
 
 
 Profile
-In profile mode, some debugging ability is maintained—enough to profile your app’s performance. Profile mode is disabled on the emulator and simulator, because their behavior is not representative of real performance. On mobile, profile mode is similar to release mode, with the following differences:
+Profile modunda, uygulamanızın performansının profilini çıkarmak için yeterli olan bir miktar hata ayıklama özelliği korunur. Davranışları gerçek performansı temsil etmediğinden öykünücü(emulator) ve simülatörde profil modu devre dışı bırakılır. Mobilde profil modu, aşağıdaki farklarla yayın moduna(release mode) benzer:
 
-Some service extensions, such as the one that enables the performance overlay, are enabled.
-Tracing is enabled, and tools supporting source-level debugging (such as DevTools) can connect to the process.
+Performans katmanını etkinleştiren gibi bazı hizmet uzantıları(sevice extensions) etkinleştirilir.
+İzleme(Tracing) etkindir ve kaynak düzeyinde(source level) hata ayıklamayı(debugging) destekleyen araçlar (DevTools gibi) sürece bağlanabilir.
 
 
 ---
