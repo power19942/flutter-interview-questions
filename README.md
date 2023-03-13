@@ -435,7 +435,6 @@ Popüler ve yaygın bir stream türüdür.
 Büyük bir bütünün parçaları olan bir dizi olaydan oluşur. Burada, tek bir olay bile kaçırılmadan, tüm olayların tanımlanmış bir sırayla iletilmesi gerekir.
 Bir web isteği aldığınızda veya bir dosya aldığınızda aldığınız bir stream türüdür.
 Bu stream yalnızca bir kez listelenebilir. Tekrar tekrar listelemek, başlangıç değerlerinin eksik olması anlamına gelir ve genel akış(overall stream) hiç mantıklı değildir.
-When the listing starts in this stream the data gets fetched and provided in chunks.
 Listeleme bu stream'de başladığında, veriler alınır(fetch) ve parçalar halinde sağlanır.
 
 
@@ -461,7 +460,6 @@ Flutter inspector(denetçi), pencere öğesi ağaçlarını(widget trees) görse
 
 55.`Stream` vs `Future`?
 
-The difference is that Futures are about one-shot request/response (I ask, there is a delay, I get a notification that my Future is ready to collect, and I'm done!) whereas Streams are a continuous series of responses to a single request (I ask, there is a delay, then I keep getting responses until the stream dries up or I decide to close it and walk away)
 Aradaki fark, Futures'ın tek seferlik bir istek/yanıtla ilgili olmasıdır (soruyorum, bir gecikme var, Future'ın toplanmaya hazır olduğuna dair bir bildirim(notification) alıyorum ve işim bitti!) oysa Streams sürekli bir dizi yanıttır. tek bir istek (soruyorum, gecikme var, sonra stream kuruyana kadar yanıt almaya devam ediyorum veya kapatıp gitmeye karar veriyorum)
 
 ---
@@ -485,7 +483,6 @@ Bu işlev, her saniye artan bir değer yayar.
 
 58.`Debug` vs `Profile` mode?
 
-In debug mode, the app is set up for debugging on the physical device, emulator, or simulator.
 Hata ayıklama(debug) modunda uygulama, fiziksel cihazda(physical device), emülatörde(emulator) veya simülatörde(simulator) hata ayıklamak(debugging) için kurulur.
 
 Debug 
@@ -505,16 +502,19 @@ Performans katmanını etkinleştiren gibi bazı hizmet uzantıları(sevice exte
 
 ---
 
-59.How to convert a `List` into a `Map` in Dart?
+59.Dart'da `List`'i `Map`'e dönüştürme nasıl yapılır?
 
 <img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/list.png' alt="list"/>
 
 
 ---
 
-60.What does `non-nullable` by default mean?
+60.Varsayılan olarak `non-nullable` ne anlama gelir?
 
 <img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/no_null.png' alt="no_null"/>
+-- fotoğrafın türkçesi --
+Yukarıda görebileceğiniz gibi, bir değişkenin varsayılan olarak null yapılamaması, normalde bildirilen her değişkenin null olamayacağı anlamına gelir. Sonuç olarak, atanmadan önce değişkene erişen herhangi bir işlem yasa dışıdır.
+Ek olarak, null olmayan bir değişkene null atanmasına da izin verilmez:
 
 ---
 
@@ -527,54 +527,61 @@ Performans katmanını etkinleştiren gibi bazı hizmet uzantıları(sevice exte
 
 ---
 
-62.Why is `exit(0)` not preferred for closing an app?
+62.Bir uygulamayı kapatmak için neden `exit(0)` tercih edilmiyor?
 
 <img src='https://github.com/power19942/flutter-interview-questions/blob/main/img/exit0.png' alt="exit0"/>
+-- fotoğrafın türkçesi --
+For iOS
+SystemNavigator.pop(): çalışmıyor
+exit(0): Çalışır, ancak Apple, uygulamadan programlı olarak çıkmak Apple İnsan arayüzü yönergelerine aykırı olduğu için UYGULAMANIZI ASKIYA ALABİLİR.
+
+For Android
+SystemNavigator.pop(): Çalışır ve uygulamadan çıkmanın ÖNERİLEN yoludur.
+exit(0): Ayrıca çalışır, ancak Dart VM işlemini hemen sonlandırdığından ve kullanıcı uygulamanın kilitlendiğini düşünebileceğinden ÖNERİLMEZ.
+---
+
+63.Flutter'da `main` fonksiyonu ile `runApp()` fonksiyonu arasındaki fark nedir?
+
+Dart'ta main() program için giriş noktası görevi görürken runApp() verilen parçacığı ekrana ekler.
+
 
 ---
 
-63.What is the difference between `main` function and the `runApp()` function in Flutter?
+64.`Dart` nedir ve Flutter bunu neden kullanır?
 
-In Dart, main() acts as the entry point for the program whereas runApp() attaches the given widget to the screen.
+Dart, Flutter'ın neredeyse tamamının Dart'ta yazılmasına izin veren hızlı, öngörülebilir, yerel kodla derlenmiş AOT'dir (Zamanın Önünde). Bu sadece Flutter'ı hızlandırmakla kalmaz, neredeyse her şey (tüm widget'lar dahil) özelleştirilebilir.
 
+Dart ayrıca olağanüstü hızlı geliştirme döngüleri ve ezber bozan iş akışı (Flutter'ın popüler saniyeden kısa sürede durum bilgisi olan hot reload'ı dahil) için derlenen JIT (Tam Zamanında) olabilir.
 
----
+Dart, 60 fps'de çalışan akıcı animasyonlar ve geçişler oluşturmayı kolaylaştırır. Dart, kilitler olmadan nesne ayırma ve çöp toplama yapabilir. Ve JavaScript gibi, Dart da önleyici planlama ve paylaşılan bellekten kaçınır (ve böylece kilitlenir). Flutter uygulamaları yerel koda derlendiğinden, bölgeler arasında yavaş bir köprü gerektirmezler (ör. JavaScript'ten yerele). Ayrıca çok daha hızlı başlarlar.
 
-64.What is `Dart` and why does Flutter use it?
+Dart, Flutter'ın JSX veya XML gibi ayrı bir bildirime dayalı düzen dili veya ayrı görsel arayüz oluşturuculara ihtiyaç duymamasını sağlar, çünkü Dart'ın bildirime dayalı, programatik düzeninin okunması ve görselleştirilmesi kolaydır. Ve tüm düzen tek bir dilde ve tek bir yerde olduğundan, Flutter'ın düzeni bir çırpıda yapan gelişmiş araçları sağlaması kolaydır.
 
-
-Dart is AOT (Ahead Of Time) compiled to fast, predictable, native code, which allows almost all of Flutter to be written in Dart. This not only makes Flutter fast, virtually everything (including all the widgets) can be customized.
-
-Dart can also be JIT (Just In Time) compiled for exceptionally fast development cycles and game-changing workflow (including Flutter’s popular sub-second stateful hot reload).
-
-Dart makes it easier to create smooth animations and transitions that run at 60fps. Dart can do object allocation and garbage collection without locks. And like JavaScript, Dart avoids preemptive scheduling and shared memory (and thus locks). Because Flutter apps are compiled to native code, they do not require a slow bridge between realms (e.g., JavaScript to native). They also start up much faster.
-
-Dart allows Flutter to avoid the need for a separate declarative layout language like JSX or XML, or separate visual interface builders, because Dart’s declarative, programmatic layout is easy to read and visualize. And with all the layout in one language and in one place, it is easy for Flutter to provide advanced tooling that makes layout a snap.
-
-Developers have found that Dart is particularly easy to learn because it has features that are familiar to users of both static and dynamic languages
+Geliştiriciler, hem statik hem de dinamik dillerin kullanıcılarının aşina olduğu özelliklere sahip olduğu için Dart'ın öğrenilmesinin özellikle kolay olduğunu keşfettiler.
 
 ---
 
-65.Where are the `layout` files? Why doesn’t Flutter have layout files?
+65.`layout` dosyaları nerede? Flutter neden layout dosyalarına sahip değil?
 
-In the Android framework, we separate an activity into layout and code. Because of this, we need to get references to views to work on them in Java. (Of course Kotlin lets you avoid that.) The layout file itself would be written in XML and consist of Views and ViewGroups.
+Android framework'de, bir aktiviteyi düzen ve koda ayırırız. Bu nedenle, Java'da üzerinde çalışmak için görünümlere referans almamız gerekiyor. (Elbette Kotlin bundan kaçınmanıza izin verir.) Düzen dosyasının kendisi XML'de yazılır ve Views ile ViewGroups'dan oluşur.
 
-Flutter uses a completely new approach where instead of Views, you use widgets. A View in Android was mostly an element of the layout, but in Flutter, a Widget is pretty much everything. Everything from a button to a layout structure is a widget. The advantage here is in customisability. Imagine a button in Android. It has attributes like text which lets you add text to the button. But a button in Flutter does not take a title as a string, but another widget. Meaning inside a button you can have text, an image, an icon and pretty much anything you can imagine without breaking layout constraints. This also lets you make customised widgets pretty easily whereas in Android making customised views is a rather difficult thing to do
+Flutter, Görünümler yerine widget'ları kullandığınız tamamen yeni bir yaklaşım kullanır. Android'de bir Görünüm çoğunlukla düzenin bir öğesiydi, ancak Flutter'da bir Widget hemen hemen her şeydir. Düğmeden düzen yapısına kadar her şey bir widget'tır. Buradaki avantaj, özelleştirilebilirliktir. Android'de bir düğme hayal edin. Düğmeye metin eklemenizi sağlayan metin gibi özelliklere sahiptir. Ancak Flutter'daki bir düğme, bir dize olarak bir başlık değil, başka bir widget alır. Yani, bir düğmenin içinde, düzen kısıtlamalarını bozmadan metne, bir resme, bir simgeye ve hayal edebileceğiniz hemen hemen her şeye sahip olabilirsiniz. Bu aynı zamanda özelleştirilmiş widget'ları oldukça kolay bir şekilde yapmanızı sağlarken, Android'de özelleştirilmiş görünümler yapmak oldukça zor bir şeydir.
 
 ---
 
-66.What is the difference between `final` and `const` in Flutter?
+66.Flutter'da `final` ve `const` arasındaki fark nedir?
 
-`final` means single-assignment: A final variable or field must have an initializer. Once assigned a value, a final variable's value cannot be changed. final modifies variables.
+"final", tek atama anlamına gelir: Bir final değişkenin veya alanın bir başlatıcısı olmalıdır. Bir değer atandıktan sonra, son değişkenin değeri değiştirilemez. final değişkenleri değiştirir.
 
-`const` has a meaning that's a bit more complex and subtle in Dart. const modifies values. You can use it when creating collections, like const [1, 2, 3], and when constructing objects (instead of new) like const Point(2, 3). Here, const means that the object's entire deep state can be determined entirely at compile time and that the object will be frozen and completely immutable.
+"const", Dart'ta biraz daha karmaşık ve incelikli bir anlama sahiptir. const değerleri değiştirir. const [1, 2, 3] gibi koleksiyonlar oluştururken ve const Point(2, 3) gibi nesneler (yeni yerine) oluştururken kullanabilirsiniz. Burada const, nesnenin tüm derin durumunun derleme zamanında tamamen belirlenebileceği ve nesnenin donmuş ve tamamen değişmez olacağı anlamına gelir.
 
-Const objects have a couple of interesting properties and restrictions:
+Const nesnelerinin birkaç ilginç özelliği ve kısıtlaması vardır:
 
-They must be created from data that can be calculated at compile time. A const object does not have access to anything you would need to calculate at runtime. 1 + 2 is a valid const expression, but new DateTime.now() is not.
+Derleme zamanında hesaplanabilen verilerden oluşturulmaları gerekir. Bir const nesnesinin çalışma zamanında hesaplamanız gereken hiçbir şeye erişimi yoktur. 1 + 2 geçerli bir const ifadesidir, ancak new DateTime.now() değildir.
 
-They are deeply, transitively immutable. If you have a final field containing a collection, that collection can still be mutable. If you have a const collection, everything in it must also be const, recursively.
+Derinden, geçişli olarak değişmezler. Bir koleksiyon içeren son bir alanınız varsa, bu koleksiyon yine de değiştirilebilir olabilir. Bir const koleksiyonunuz varsa, içindeki her şey yinelemeli olarak const olmalıdır.
 
 They are canonicalized. This is sort of like string interning: for any given const value, a single const object will be created and re-used no matter how many times the const expression(s) are evaluated.
+Kanonikleştirildiler(canonicalized). Bu, bir tür string interning gibidir: herhangi bir const değeri için, const ifade(ler)i kaç kez değerlendirilirse değerlendirilsin, tek bir const nesnesi yaratılacak ve yeniden kullanılacaktır.
 
 https://news.dartlang.org/2012/06/const-static-final-oh-my.html
